@@ -31,7 +31,7 @@ body {
 }
 
 .btn-zoom {
-    background: #24884a;
+    background: #1E8991;
     color: #fff;
     font-size: 16px;
     border: none;
@@ -57,7 +57,7 @@ body {
 }
 
 .btn {
-    background: #24884a;
+    background: #1E8991;
     color: #fff;
     font-size: 16px;
     border: none;
@@ -72,7 +72,7 @@ body {
 }
 
 .chevrons {
-    color: #24884a;
+    color: #1E8991;
     background-color: transparent;
     border: none;
     font-size: 30px;
@@ -117,7 +117,7 @@ body {
 
 .page-info-box {
     background-color: #5f5d5d;
-    border: 1px solid #24884a;
+    border: 1px solid #1E8991;
     border-radius: 5px;
     width: 35%;
     padding: 0.57rem 0.7rem;
@@ -200,8 +200,8 @@ canvas {
     left: 0;
     right: 0;
     bottom: 0;
-    border-left: 5px solid #24884a;
-    border-right: 5px solid #24884a;
+    border-left: 5px solid #1E8991;
+    border-right: 5px solid #1E8991;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-radius: 50%;
@@ -228,8 +228,8 @@ canvas {
     left: 60px;
     right: 60px;
     bottom: 60px;
-    border-left: 5px solid #24884a;
-    border-right: 5px solid #24884a;
+    border-left: 5px solid #1E8991;
+    border-right: 5px solid #1E8991;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-radius: 50%;

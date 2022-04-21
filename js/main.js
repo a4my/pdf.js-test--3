@@ -1,4 +1,4 @@
-const url = './docs/pdf-3.pdf';
+const url = './docs/pdf-1.pdf';
 
 let pdfDoc = null,
   pageNum = 1,
@@ -6,11 +6,11 @@ let pdfDoc = null,
   pageNumIsPending = null;
   scale = 0.8;
 
-  const canvas = document.querySelector('#pdf-render-left'),
+  const canvas = document.querySelector('#pdf-render'),
   ctx = canvas.getContext('2d');
 
   // Comment out for 2 pages rendering
-  const secondCanvas = document.querySelector('#pdf-render-right')
+  const secondCanvas = document.querySelector('#pdf-render-2')
   const ctx2 = secondCanvas.getContext('2d')
   
 // Render the page
@@ -154,7 +154,9 @@ const showPrevPage = () => {
   } else {
       pageNum -= 2
   }
-    queueRenderPage(pageNum);
+  console.log(pageNum)
+
+  queueRenderPage(pageNum);
 };
 
 // Show Next Page
@@ -168,6 +170,9 @@ const showNextPage = () => {
 } else {
     pageNum += 2
 }
+console.log(pageNum)
+
+
   queueRenderPage(pageNum);
 };
 
@@ -176,6 +181,7 @@ pdfjsLib
   .getDocument(url)
   .promise.then(pdfDoc_ => {
     pdfDoc = pdfDoc_;
+    console.log(pdfDoc._pdfInfo.numPages) 
     document.querySelector('#page-count').textContent = pdfDoc.numPages;
 
     renderPage(pageNum);
