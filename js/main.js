@@ -1,4 +1,4 @@
-const url = './docs/pdf-1.pdf';
+const url = './docs/pdf-3.pdf';
 
 let pdfDoc = null,
   pageNum = 1,
@@ -21,7 +21,7 @@ const renderPage = num => {
         // Get page
         pdfDoc.getPage(num).then(page => {
           // Set scale
-          const viewport = page.getViewport({ scale });
+          const viewport = page.getViewport(scale);
           secondCanvas.height = viewport.height;
           secondCanvas.width = viewport.width;
           secondCanvas.style.border = '1px solid #000'
@@ -31,7 +31,8 @@ const renderPage = num => {
             canvasContext: ctx2,
             viewport
           };
-      
+          console.log(renderCtx)
+          console.log(secondCanvas)
           page.render(renderCtx).promise.then(() => {
             pageIsRendering = false;
       
@@ -66,10 +67,10 @@ const renderPage = num => {
         // Get page
         pdfDoc.getPage(num).then(page => {
           // Set scale
-          const viewport = page.getViewport({ scale });
+          const viewport = page.getViewport(scale);
           canvas.height = viewport.height;
           canvas.width = viewport.width;
-      
+          console.log(canvas)
           const renderCtx = {
             canvasContext: ctx,
             viewport
@@ -93,15 +94,16 @@ const renderPage = num => {
         // Comment out for 2 pages rendering
         
         
-        if(num !== pdfDoc._pdfInfo.numPages) {
+        if(num !== pdfDoc.pdfInfo.numPages) {
           let secondPage = num + 1
             pdfDoc.getPage(secondPage).then(page => {
             // Set Scale
-            const viewport = page.getViewport({ scale })
+            const viewport = page.getViewport(scale)
             secondCanvas.height = viewport.height
             secondCanvas.width = viewport.width
             secondCanvas.style.opacity = 1
-            
+            console.log(secondCanvas)
+
         
             const renderCtx = {
                 canvasContext: ctx2,
@@ -161,7 +163,7 @@ const showPrevPage = () => {
 
 // Show Next Page
 const showNextPage = () => {
-  if (pageNum + 2 > pdfDoc.numPages) {
+  if (pageNum + 2 > pdfDoc.pdfInfo.numPages) {
     return
   }
   
@@ -177,13 +179,12 @@ console.log(pageNum)
 };
 
 // Get Document
-pdfjsLib
+PDFJS
   .getDocument(url)
   .promise.then(pdfDoc_ => {
     pdfDoc = pdfDoc_;
-    console.log(pdfDoc._pdfInfo.numPages) 
-    document.querySelector('#page-count').textContent = pdfDoc.numPages;
-
+    console.log(pdfDoc)
+    document.querySelector('#page-count').textContent = pdfDoc.pdfInfo.numPages;
     renderPage(pageNum);
   })
   .catch(err => {
@@ -217,12 +218,11 @@ function skipToFirstPage() {
 
 //Move to last page
 function skipToLastPage() {
-    if(pdfDoc._pdfInfo.numPages % 2 === 0) {
-      
-      pageNum = pdfDoc._pdfInfo.numPages 
+    if(pdfDoc.pdfInfo.numPages % 2 === 0) {
+      pageNum = pdfDoc.pdfInfo.numPages 
       renderPage(pageNum)
-    } else if(pdfDoc._pdfInfo.numPages % 2 !== 0) {
-      pageNum = pdfDoc._pdfInfo.numPages - 1
+    } else if(pdfDoc.pdfInfo.numPages % 2 !== 0) {
+      pageNum = pdfDoc.pdfInfo.numPages - 1
       renderPage(pageNum)
     }
 }
