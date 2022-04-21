@@ -31,8 +31,7 @@ const renderPage = num => {
             canvasContext: ctx2,
             viewport
           };
-          console.log(renderCtx)
-          console.log(secondCanvas)
+          
           page.render(renderCtx).promise.then(() => {
             pageIsRendering = false;
       
@@ -70,7 +69,7 @@ const renderPage = num => {
           const viewport = page.getViewport(scale);
           canvas.height = viewport.height;
           canvas.width = viewport.width;
-          console.log(canvas)
+          
           const renderCtx = {
             canvasContext: ctx,
             viewport
@@ -102,8 +101,6 @@ const renderPage = num => {
             secondCanvas.height = viewport.height
             secondCanvas.width = viewport.width
             secondCanvas.style.opacity = 1
-            console.log(secondCanvas)
-
         
             const renderCtx = {
                 canvasContext: ctx2,
@@ -156,8 +153,6 @@ const showPrevPage = () => {
   } else {
       pageNum -= 2
   }
-  console.log(pageNum)
-
   queueRenderPage(pageNum);
 };
 
@@ -172,9 +167,6 @@ const showNextPage = () => {
 } else {
     pageNum += 2
 }
-console.log(pageNum)
-
-
   queueRenderPage(pageNum);
 };
 
